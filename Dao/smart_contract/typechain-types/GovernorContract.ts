@@ -29,6 +29,7 @@ export interface GovernorContractInterface extends utils.Interface {
     "castVoteWithReasonAndParams(uint256,uint8,string,bytes)": FunctionFragment;
     "castVoteWithReasonAndParamsBySig(uint256,uint8,string,bytes,uint8,bytes32,bytes32)": FunctionFragment;
     "execute(address[],uint256[],bytes[],bytes32)": FunctionFragment;
+    "getTotalVotesForProposal(uint256)": FunctionFragment;
     "getVotes(address,uint256)": FunctionFragment;
     "getVotesWithParams(address,uint256,bytes)": FunctionFragment;
     "hasVoted(uint256,address)": FunctionFragment;
@@ -55,6 +56,7 @@ export interface GovernorContractInterface extends utils.Interface {
     "supportsInterface(bytes4)": FunctionFragment;
     "timelock()": FunctionFragment;
     "token()": FunctionFragment;
+    "totalVotesForProposal(uint256)": FunctionFragment;
     "updateQuorumNumerator(uint256)": FunctionFragment;
     "updateTimelock(address)": FunctionFragment;
     "version()": FunctionFragment;
@@ -105,6 +107,10 @@ export interface GovernorContractInterface extends utils.Interface {
   encodeFunctionData(
     functionFragment: "execute",
     values: [string[], BigNumberish[], BytesLike[], BytesLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getTotalVotesForProposal",
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "getVotes",
@@ -199,6 +205,10 @@ export interface GovernorContractInterface extends utils.Interface {
   encodeFunctionData(functionFragment: "timelock", values?: undefined): string;
   encodeFunctionData(functionFragment: "token", values?: undefined): string;
   encodeFunctionData(
+    functionFragment: "totalVotesForProposal",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "updateQuorumNumerator",
     values: [BigNumberish]
   ): string;
@@ -246,6 +256,10 @@ export interface GovernorContractInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "execute", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "getTotalVotesForProposal",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "getVotes", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getVotesWithParams",
@@ -320,6 +334,10 @@ export interface GovernorContractInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "timelock", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "token", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "totalVotesForProposal",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "updateQuorumNumerator",
     data: BytesLike
@@ -562,6 +580,11 @@ export interface GovernorContract extends BaseContract {
       overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
+    getTotalVotesForProposal(
+      proposalId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
     getVotes(
       account: string,
       blockNumber: BigNumberish,
@@ -711,6 +734,11 @@ export interface GovernorContract extends BaseContract {
 
     token(overrides?: CallOverrides): Promise<[string]>;
 
+    totalVotesForProposal(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
     updateQuorumNumerator(
       newQuorumNumerator: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -782,6 +810,11 @@ export interface GovernorContract extends BaseContract {
     descriptionHash: BytesLike,
     overrides?: PayableOverrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
+
+  getTotalVotesForProposal(
+    proposalId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
 
   getVotes(
     account: string,
@@ -929,6 +962,11 @@ export interface GovernorContract extends BaseContract {
 
   token(overrides?: CallOverrides): Promise<string>;
 
+  totalVotesForProposal(
+    arg0: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
   updateQuorumNumerator(
     newQuorumNumerator: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
@@ -998,6 +1036,11 @@ export interface GovernorContract extends BaseContract {
       values: BigNumberish[],
       calldatas: BytesLike[],
       descriptionHash: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    getTotalVotesForProposal(
+      proposalId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
@@ -1146,6 +1189,11 @@ export interface GovernorContract extends BaseContract {
     timelock(overrides?: CallOverrides): Promise<string>;
 
     token(overrides?: CallOverrides): Promise<string>;
+
+    totalVotesForProposal(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     updateQuorumNumerator(
       newQuorumNumerator: BigNumberish,
@@ -1334,6 +1382,11 @@ export interface GovernorContract extends BaseContract {
       overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
+    getTotalVotesForProposal(
+      proposalId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     getVotes(
       account: string,
       blockNumber: BigNumberish,
@@ -1477,6 +1530,11 @@ export interface GovernorContract extends BaseContract {
 
     token(overrides?: CallOverrides): Promise<BigNumber>;
 
+    totalVotesForProposal(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     updateQuorumNumerator(
       newQuorumNumerator: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -1550,6 +1608,11 @@ export interface GovernorContract extends BaseContract {
       calldatas: BytesLike[],
       descriptionHash: BytesLike,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    getTotalVotesForProposal(
+      proposalId: BigNumberish,
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     getVotes(
@@ -1696,6 +1759,11 @@ export interface GovernorContract extends BaseContract {
     timelock(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     token(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    totalVotesForProposal(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     updateQuorumNumerator(
       newQuorumNumerator: BigNumberish,

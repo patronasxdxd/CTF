@@ -281,10 +281,16 @@ export const BoxContentProvider = ({ children }) => {
         const governor = createGovernorContract();
         const boxContract = createEthereumContract();
 
+
+        console.log(values)
         // 0 = Against, 1 = For, 2 = Abstain for this example
         console.log("Voting...")
         const proposalState2 = await governor.state(boxContract.getProposal());
         console.log(`Current Proposal State: ${proposalState2}`)
+
+        console.log(governor)
+        console.log(`total votes ${ await  governor.getTotalVotesForProposal(boxContract.getProposal())}`)
+
 
         const voteTx = await governor.castVoteWithReason(boxContract.getProposal(), values, reason)
         setIsLoadingVote(true);

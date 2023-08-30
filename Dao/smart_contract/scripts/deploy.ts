@@ -132,9 +132,9 @@ export async function deployDiamond() {
 
 
 
-  console.log("export const DiamondCutFacetAdress = \"", diamondCutFacet.address, "\"");
-  console.log("export const DiamondAddress  = \"", diamond.address, "\"");
-  console.log("export const DiamondInitAddress  = \"", diamondInit.address, "\"");
+  console.log("export const DiamondCutFacetAdress = \"",diamondCutFacet.address,"\"");
+  console.log("export const DiamondAddress  = \"",diamond.address,"\"");
+  console.log("export const DiamondInitAddress  = \"",diamondInit.address,"\"");
 
 
 
@@ -195,17 +195,6 @@ export async function deployDiamond() {
   )) as BoxFacet;
   const transferTx = await transfer.changeOwner(timeLock.address);
   await transferTx.wait(1)
-
-
-  const transfer2 = (await ethers.getContractAt(
-    "BoxFacet",
-    DiamondAddress
-  )) as BoxFacet;
-  const transferTx2 = await transfer2.retrieveOwner();
-  console.log(transferTx2);
-  console.log(timeLock.address);
-
-
 
 
 

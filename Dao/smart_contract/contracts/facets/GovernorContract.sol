@@ -17,6 +17,12 @@ contract GovernorContract is
     GovernorVotesQuorumFraction,
     GovernorTimelockControl
 {
+
+
+    mapping(uint256 => uint256) public totalVotesForProposal;
+
+
+
     constructor(
         IVotes _token,
         TimelockController _timelock,
@@ -25,15 +31,21 @@ contract GovernorContract is
         uint256 _votingDelay
     )
         Governor("GovernorContract")
-        GovernorSettings(
-            _votingDelay, /* 1 block */ // votind delay
-            _votingPeriod, // 45818, /* 1 week */ // voting period
-            0 // proposal threshold
+       GovernorSettings(
+            _votingDelay, /* 1 block */ // voting delay
+            _votingPeriod, // voting period
+            1 // proposal threshold (set to one vote)
         )
         GovernorVotes(_token)
         GovernorVotesQuorumFraction(_quorumPercentage)
         GovernorTimelockControl(_timelock)
     {}
+
+
+ // Function to get the total vote count for a proposal
+    function getTotalVotesForProposal(uint256 proposalId) public view returns (uint256) {
+        return totalVotesForProposal[proposalId];
+    }
 
     function votingDelay()
         public
@@ -64,6 +76,7 @@ contract GovernorContract is
         return super.quorum(blockNumber);
     }
 
+
     function getVotes(address account, uint256 blockNumber)
         public
         view
@@ -81,6 +94,20 @@ contract GovernorContract is
     {
         return super.state(proposalId);
     }
+
+
+ function castVoteWithReason(
+    uint256 proposalId,
+    uint8 support,
+    string calldata reason
+) public override(Governor,IGovernor) returns (uint256) {
+    address voter = _msgSender();
+
+    // Update the total votes for the proposal
+    totalVotesForProposal[proposalId]++;
+    return super.castVoteWithReason(proposalId, support, reason);
+}
+
 
     function propose(
         address[] memory targets,
