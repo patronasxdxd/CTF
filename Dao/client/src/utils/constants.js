@@ -25,9 +25,9 @@ import abiTimeLock from "./TimeLock.json";
 
 export const contractAddress = "0xfCCF80344a668b72ac4Be23513F0E9E4a35C84fA";
 
-export const DiamondCutFacetAdress = " 0x0B306BF915C4d645ff596e518fAf3F9669b97016 "
-export const DiamondAddress  = " 0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1 "
-export const DiamondInitAddress  = " 0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE "
+export const DiamondCutFacetAdress = "0x0B306BF915C4d645ff596e518fAf3F9669b97016"
+export const DiamondAddress  = "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1"
+export const DiamondInitAddress  = "0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE"
 
 //Deploying facets
 export const DiamondLoupeFacet = "0x68B1D87F95878fE05B998F19b66F4baba5De1aed"
