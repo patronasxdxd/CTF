@@ -187,7 +187,7 @@ export async function deployDiamond() {
   await delegatet.delegate(contractOwner.address);
 
 
-  console.log("minting", await delegatet.mint(contractOwner.address, 1000000));
+  // console.log("minting", await delegatet.mint(contractOwner.address, 10000));
 
   const transfer = (await ethers.getContractAt(
     "BoxFacet",

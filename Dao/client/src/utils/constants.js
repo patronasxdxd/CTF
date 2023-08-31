@@ -25,17 +25,17 @@ import abiTimeLock from "./TimeLock.json";
 
 export const contractAddress = "0xfCCF80344a668b72ac4Be23513F0E9E4a35C84fA";
 
-export const DiamondCutFacetAdress = "0xA56F946D6398Dd7d9D4D9B337Cf9E0F68982ca5B"
-export const DiamondAddress  = "0x5D42EBdBBa61412295D7b0302d6F50aC449Ddb4F"
-export const DiamondInitAddress  = "0xddE78e6202518FF4936b5302cC2891ec180E8bFf"
+export const DiamondCutFacetAdress = "0x942ED2fa862887Dc698682cc6a86355324F0f01e"
+export const DiamondAddress  = "0x8D81A3DCd17030cD5F23Ac7370e4Efb10D2b3cA4"
+export const DiamondInitAddress  = "0xcC4c41415fc68B2fBf70102742A83cDe435e0Ca7"
 
 //Deploying facets
-export const DiamondLoupeFacet = "0xB06c856C8eaBd1d8321b687E188204C1018BC4E5"
-export const OwnershipFacet = "0xaB7B4c595d3cE8C85e16DA86630f2fc223B05057"
-export const BoxFacet = "0xAD523115cd35a8d4E60B3C0953E0E0ac10418309"
-export const GovernanceToken = "0x045857BDEAE7C1c7252d611eB24eB55564198b4C"
-export const timeLockAddress = "0x413b1AfCa96a3df5A686d8BFBF93d30688a7f7D9"
-export const GovenorContract = "0x5133BBdfCCa3Eb4F739D599ee4eC45cBCD0E16c5"
+export const DiamondLoupeFacet = "0xa722bdA6968F50778B973Ae2701e90200C564B49"
+export const OwnershipFacet = "0xc7cDb7A2E5dDa1B7A0E792Fe1ef08ED20A6F56D4"
+export const BoxFacet = "0x967AB65ef14c58bD4DcfFeaAA1ADb40a022140E5"
+export const GovernanceToken = "0xe1708FA6bb2844D5384613ef0846F9Bc1e8eC55E"
+export const timeLockAddress = "0x8e264821AFa98DD104eEcfcfa7FD9f8D8B320adA"
+export const GovenorContract = "0xC1e0A9DB9eA830c52603798481045688c8AE99C2"
 
 export const contractABI = abi.abi;
 export const contractABIDiamond = abiDia.abi;

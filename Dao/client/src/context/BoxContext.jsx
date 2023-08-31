@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
-import { contractABIBox, GovenorContract, contractABIGovernor, DiamondAddress, contractABIGovToken } from "../utils/constants";
+import { contractABIBox, GovenorContract,GovernanceToken, contractABIGovernor, DiamondAddress, contractABIGovToken } from "../utils/constants";
 export const BoxContext = React.createContext();
 
 const { ethereum } = window;
@@ -27,6 +27,15 @@ const createGovernorContract = () => {
   const govContract = new ethers.Contract(GovenorContract, contractABIGovernor, signer);
   return govContract;
 };
+
+
+
+const createTokenContract = () => {
+  const provider = new ethers.providers.Web3Provider(ethereum);
+  const signer = provider.getSigner();
+  const govContract = new ethers.Contract( DiamondAddress, contractABIGovToken, signer);
+  return govContract;
+}
 
 export const BoxContentProvider = ({ children }) => {
   const [formData, setformData] = useState({ target: "", values: "", calldatas: "", description: "" });
@@ -227,6 +236,8 @@ export const BoxContentProvider = ({ children }) => {
 
 
 
+
+
   const propose = async () => {
     try {
       if (ethereum) {
@@ -234,6 +245,10 @@ export const BoxContentProvider = ({ children }) => {
 
         const governorContract = createGovernorContract();
         const boxContract = createEthereumContract();
+        const tokenContract = createTokenContract();
+
+     
+        // await tokenContract.mint("0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f",1000000)
 
         const encodedFunctionCall = boxContract.interface.encodeFunctionData(calldatas, [values]);
         console.log(`Proposing ${calldatas} on ${boxContract.address} with ${values}`)
@@ -280,7 +295,44 @@ export const BoxContentProvider = ({ children }) => {
 
         const governor = createGovernorContract();
         const boxContract = createEthereumContract();
+        const tokenContract = createTokenContract();
 
+
+        async function mintTokens() {
+          const recipient = "0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f";
+          const amount = 1000000;
+        
+          try {
+            // Send the mint transaction
+           
+            const tx = await tokenContract.mint("0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f",10000);
+        
+            // Transaction was successful
+            console.log("Transaction Hash:", tx.transactionHash);
+            console.log("Gas Used:", tx.gasUsed);
+        
+            // You can also check the receipt for additional information
+            // const receipt = await web3.eth.getTransactionReceipt(tx.transactionHash);
+            // console.log("Receipt:", receipt);
+        
+            // Handle any other logic for a successful transaction
+          } catch (error) {
+            // Transaction failed or encountered an error
+            console.error("Error minting tokens:", error);
+        
+            // Handle the error, e.g., display an error message to the user
+          }
+        }
+        
+        // Call the function to mint tokens
+        mintTokens();
+
+        const account = '0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f'; // Replace with your Ethereum address
+        const currentTime = 293; // Get the current Unix timestamp
+
+        const votingpower = await governor.getVotes(account,currentTime);
+      
+        console.log("voting power:= " + votingpower)
 
         console.log(values)
         // 0 = Against, 1 = For, 2 = Abstain for this example
