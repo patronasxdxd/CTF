@@ -39,35 +39,7 @@ const Faucet = () => {
     <div className="w-full flex md:justify-center justify-between items-center flex-col p-4 ">
 
 
-      {proposalId === 4
-        ? <span class="inline-block animate-bounce rounded-full p-4 bg-teal-400 text-white text-sm">Queue now
-          <svg class="w-6 h-6 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />
-          </svg>
-        </span>
-        : (
-          <h2 >
-
-
-
-          </h2>
-        )}
-
-      {proposalId === 5
-        ? <span class="inline-block animate-bounce rounded-full p-4 bg-teal-400 text-white text-sm">Execute now
-          <svg class="w-6 h-6 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />
-          </svg>
-        </span>
-        : (
-          <h2 >
-
-
-
-          </h2>
-        )}
-
-
+    
       <h2 className="text-white text-base text-center mx-2"> GovToken Faucet </h2>
 
       <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">

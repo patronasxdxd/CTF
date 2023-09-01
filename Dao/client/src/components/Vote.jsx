@@ -59,7 +59,7 @@ const Vote = () => {
           {/* <h2 className="text-white text-base text-center mx-2"> Vote: </h2> */}
               
               <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
-                <Input placeholder="yes(1) or no(2)" name="values" type="number" handleChangeVote={handleChangeVote} />
+                <Input placeholder="0 = Against, 1 = For, 2 = Abstain" name="values" type="number" handleChangeVote={handleChangeVote} />
                 <Input placeholder="reason" name="reason" type="text" handleChangeVote={handleChangeVote} />
 
               

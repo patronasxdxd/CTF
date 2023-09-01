@@ -253,10 +253,12 @@ export const BoxContentProvider = ({ children }) => {
         const tokenContract = createTokenContract();
 
         console.log("minting!")
-        await tokenContract.mint("0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f",1000000)
+
+        
+        await tokenContract.mint(address,1)
 
         console.log("delegating!")
-        await tokenContract.delegate("0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f",1000000)
+        await tokenContract.delegate(address)
 
 
       }
