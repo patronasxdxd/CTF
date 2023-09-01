@@ -105,6 +105,35 @@ export const BoxContentProvider = ({ children }) => {
   // proposalDeadline
 
 
+  useEffect(() => {
+    // Function to fetch the current block number
+    const fetchBlockNumber = async () => {
+      try {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const newBlockNumber = await provider.getBlockNumber();
+        setdurationvalues(newBlockNumber);
+      } catch (error) {
+        console.error('Error fetching block number:', error);
+      }
+    };
+
+    // Fetch the initial block number
+    fetchBlockNumber();
+  
+    // Set up an interval to periodically check for new blocks (every 10 seconds in this example)
+    const refreshInterval = setInterval(() => {
+      fetchBlockNumber();
+    }, 10000); // 10 seconds
+
+  
+
+        // Clean up the interval when the component unmounts
+        return () => {
+          clearInterval(refreshInterval);
+        };
+      }, []); // Empty dependency array means this effect runs once on component mount
+    
+
 
   const getTime = async () => {
 
