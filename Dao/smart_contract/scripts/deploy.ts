@@ -187,7 +187,10 @@ export async function deployDiamond() {
   await delegatet.delegate(contractOwner.address);
 
 
-  // console.log("minting", await delegatet.mint(contractOwner.address, 10000));
+  console.log("minting", await delegatet.mint(contractOwner.address, 10000));
+
+
+  
 
   const transfer = (await ethers.getContractAt(
     "BoxFacet",
@@ -225,6 +228,9 @@ export async function deployDiamond() {
   console.log(`export const timeLockAddress = "${timeLock.address}"`)
   console.log(`export const GovenorContract = "${governorContract.address}"`)
 
+
+
+
   const governor = (await ethers.getContractAt(
     "GovernorContract",
     governorContract.address
@@ -235,6 +241,19 @@ export async function deployDiamond() {
   await proposerTx.wait(1)
   const executorTx = await timeLock.grantRole(executorRole, ADDRESS_ZERO)
   await executorTx.wait(1)
+
+
+
+
+  await delegatet.delegate(accounts[1].address);
+
+
+  console.log("minting", await delegatet.mint(accounts[1].address, 10000));
+  console.log("minting", await delegatet.mint(accounts[2].address, 10000));
+
+  await delegatet.delegate(accounts[2].address);
+
+  console.log("minting", await delegatet.mint(accounts[3].address, 10000));
 
 
   console.log("xd")
