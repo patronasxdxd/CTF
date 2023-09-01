@@ -66,7 +66,7 @@ const Propose = () => {
       {/* <h2 className="text-white text-base text-center mx-2"> Proposal</h2> */}
 
       <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
-        <Input placeholder="inter a number" name="values" type="number" handleChange={handleChange} />
+        <Input placeholder="Enter a number" name="values" type="number" handleChange={handleChange} />
         <Input placeholder="Enter calldatas, should be 'store'" name="calldatas" type="text" handleChange={handleChange} />
         <Input placeholder="Enter description" name="description" type="text" handleChange={handleChange} />
 

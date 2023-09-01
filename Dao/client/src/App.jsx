@@ -1,4 +1,4 @@
-import { Navbar, Welcome ,Box,Vote,Propose,Excecute} from "./components";
+import { Navbar, Welcome ,Box,Vote,Propose,Excecute,Faucet} from "./components";
 
 const App = () => (
   <div className="min-h-screen">
@@ -6,6 +6,7 @@ const App = () => (
       <Navbar />
       <Welcome />
     <div className="flex">
+    <Faucet/>
     <Propose />
     <Vote />
     <Excecute />

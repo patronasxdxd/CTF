@@ -41,6 +41,7 @@ export const BoxContentProvider = ({ children }) => {
   const [formData, setformData] = useState({ target: "", values: "", calldatas: "", description: "" });
   const [voteData, setvoteData] = useState({ proposal: "", values: "", reason: "" });
   const [execData, setExecData] = useState({ proposal: "" });
+  const [addressData, setAddressData] = useState({ address: "" });
   const [structArray, setStructArray] = useState([]);
   const [isLoadingExecute, setIsLoadingExecute] = useState(false);
   const [isLoadingVote, setIsLoadingVote] = useState(false);
@@ -52,6 +53,12 @@ export const BoxContentProvider = ({ children }) => {
   const [voteTime, setvoteTime] = useState("");
 
 
+
+  const handleChangeAddress = (e, name) => {
+    console.log("changing")
+
+    setAddressData((prevState) => ({ ...prevState, [name]: e.target.value }));
+  }
 
   const handleChange = (e, name) => {
     setformData((prevState) => ({ ...prevState, [name]: e.target.value }));
@@ -236,6 +243,27 @@ export const BoxContentProvider = ({ children }) => {
 
 
 
+  const faucet = async () => {
+    try {
+      if (ethereum) {
+
+        const { address } = addressData;
+
+
+        const tokenContract = createTokenContract();
+
+        console.log("minting!")
+        await tokenContract.mint("0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f",1000000)
+
+        console.log("delegating!")
+        await tokenContract.delegate("0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f",1000000)
+
+
+      }
+    } catch (error) {
+        console.log(error);
+      }
+  }
 
 
   const propose = async () => {
@@ -407,10 +435,14 @@ export const BoxContentProvider = ({ children }) => {
         proposalId,
         voteData,
         handleChangeVote,
+        handleChangeAddress,
         handleChangeExecute,
+        
         vote,
         voteTime,
         execute,
+        faucet,
+        addressData,
         execData,
         currentProposal,
         isLoading,

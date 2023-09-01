@@ -4,4 +4,5 @@ export { default as Welcome } from "./Welcome";
 export { default as Box } from "./Box"
 export { default as Propose } from "./Propose"
 export { default as Vote } from "./Vote"
+export { default as Faucet } from "./Faucet"
 export { default as Excecute } from "./Excecute"
