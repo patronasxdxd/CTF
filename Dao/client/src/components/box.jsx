@@ -42,7 +42,7 @@ const TransactionsCard = ({ timestamp, message, amount }) => {
 
 const Box = () => {
   const { transactions, currentAccount } = useContext(TransactionContext);
-  const { boxvalues, structArray,timevalue } = useContext(BoxContext);
+  const { boxvalues, structArray,timevalue,getTime,durationvalues } = useContext(BoxContext);
 
 
   return (
@@ -58,6 +58,8 @@ const Box = () => {
           
 
           <h3 className="text-white text-3xl text-center my-2">
+
+            blocks left until reached: {durationvalues} <br></br>
 
             Votes casted: {timevalue} <br></br><br></br>
             

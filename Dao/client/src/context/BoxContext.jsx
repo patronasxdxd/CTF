@@ -16,6 +16,7 @@ const createEthereumContract = () => {
 
 const createGovenorToken = () => {
   const provider = new ethers.providers.Web3Provider(ethereum);
+
   const signer = provider.getSigner();
   const govContract = new ethers.Contract(DiamondAddress, contractABIGovToken, signer);
   return govContract;
@@ -50,6 +51,7 @@ export const BoxContentProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [boxvalues, setboxValues] = useState([]);
   const [timevalue, settimevalues] = useState([]);
+  const [durationvalues,setdurationvalues] = useState([]);
   const [proposalId, setProposalId] = useState([]);
   const [currentProposal, setCurrentProposal] = useState([]);
   const [voteTime, setvoteTime] = useState("");
@@ -99,6 +101,39 @@ export const BoxContentProvider = ({ children }) => {
   };
 
 
+
+  // proposalDeadline
+
+
+
+  const getTime = async () => {
+
+
+    try {
+
+      if ( ethereum)
+    {
+      console.log('123231')
+
+      const governor = createGovernorContract();
+      const boxContract = createEthereumContract();
+
+      const numbers = await governor.proposalDeadline(boxContract.getProposal())
+
+
+      const provider = new ethers.providers.Web3Provider(ethereum);
+
+      const blockNumber = await provider.getBlockNumber();
+   
+
+      setdurationvalues(  numbers.toNumber() - blockNumber);
+    }      
+    } catch (error) {
+      
+    }
+  }
+
+
   const getVotes = async () => {
 
 
@@ -111,6 +146,9 @@ export const BoxContentProvider = ({ children }) => {
       const boxContract = createEthereumContract();
 
       const numbers = await governor.getTotalVotesForProposal(boxContract.getProposal())
+
+
+   
 
 
       settimevalues( numbers.toNumber());
@@ -189,6 +227,7 @@ export const BoxContentProvider = ({ children }) => {
         getAllTransactions();
         getVotes();
         getProposalId();
+        getTime();
         getCurrentProposal();
         //checkSate();
       } else {
@@ -478,12 +517,14 @@ export const BoxContentProvider = ({ children }) => {
         isLoadingFaucet,
         vote,
         voteTime,
+        durationvalues,
         execute,
         faucet,
         addressData,
         execData,
         currentProposal,
-        isLoading,
+        isLoading,durationvalues,
+        getTime,
         isLoadingVote,
         isLoadingExecute,
         structArray,timevalue
