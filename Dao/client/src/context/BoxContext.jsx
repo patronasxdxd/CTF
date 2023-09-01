@@ -45,11 +45,15 @@ export const BoxContentProvider = ({ children }) => {
   const [addressData, setAddressData] = useState({ address: "" });
   const [structArray, setStructArray] = useState([]);
   const [isLoadingExecute, setIsLoadingExecute] = useState(false);
+  const [isProposalActive,setisProposalActive] = useState(false);
   const [isLoadingVote, setIsLoadingVote] = useState(false);
   const [isLoadingFaucet, setisLoadingFaucet] = useState(false);
   const [currentAccount, setCurrentAccount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [boxvalues, setboxValues] = useState([]);
+  const [previousBlockNumber, setPreviousBlockNumber] = useState(null);
+
+  const blockvalue =0;
   const [timevalue, settimevalues] = useState([]);
   const [durationvalues,setdurationvalues] = useState([]);
   const [proposalId, setProposalId] = useState([]);
@@ -111,7 +115,21 @@ export const BoxContentProvider = ({ children }) => {
       try {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const newBlockNumber = await provider.getBlockNumber();
-        setdurationvalues(newBlockNumber);
+        const governor = createGovernorContract();
+        const boxContract = createEthereumContract();
+
+
+        const numbers = await governor.proposalDeadline(boxContract.getProposal())
+
+
+
+   
+
+
+        if (newBlockNumber !== previousBlockNumber) {
+          setPreviousBlockNumber(newBlockNumber); // Update the previous block number
+          setdurationvalues( numbers.toNumber() - newBlockNumber);
+        }
       } catch (error) {
         console.error('Error fetching block number:', error);
       }
@@ -123,7 +141,7 @@ export const BoxContentProvider = ({ children }) => {
     // Set up an interval to periodically check for new blocks (every 10 seconds in this example)
     const refreshInterval = setInterval(() => {
       fetchBlockNumber();
-    }, 10000); // 10 seconds
+    }, 1000); // 10 seconds
 
   
 
@@ -155,7 +173,7 @@ export const BoxContentProvider = ({ children }) => {
       const blockNumber = await provider.getBlockNumber();
    
 
-      setdurationvalues(  numbers.toNumber() - blockNumber);
+      // setdurationvalues(  numbers.toNumber() - blockNumber);
     }      
     } catch (error) {
       
@@ -218,6 +236,16 @@ export const BoxContentProvider = ({ children }) => {
 
 
         setProposalId(state);
+
+
+        console.log(state);
+        if (state == 1    ){
+          setisProposalActive(true);
+        } else{
+          setisProposalActive(false);
+        }
+
+
       } else {
         console.log("Ethereum is not present");
       }
@@ -552,6 +580,7 @@ export const BoxContentProvider = ({ children }) => {
         addressData,
         execData,
         currentProposal,
+        isProposalActive,
         isLoading,durationvalues,
         getTime,
         isLoadingVote,

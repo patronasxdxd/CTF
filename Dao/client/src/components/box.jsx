@@ -42,7 +42,8 @@ const TransactionsCard = ({ timestamp, message, amount }) => {
 
 const Box = () => {
   const { transactions, currentAccount } = useContext(TransactionContext);
-  const { boxvalues, structArray,timevalue,getTime,durationvalues } = useContext(BoxContext);
+  const { boxvalues, structArray,timevalue,getTime,durationvalues,isProposalActive } = useContext(BoxContext);
+
 
 
   return (
@@ -51,18 +52,26 @@ const Box = () => {
 
     <div className="flex w-full justify-center items-center 2xl:px-20 gradient-bg-transactions">
       <div className="flex flex-col md:p-12 py-12 px-4">
+      {isProposalActive ? (
+        <div>
+          <h3 className="text-white text-3xl text-center my-2">
+            Blocks left until reached: {durationvalues} <br />
+            Votes casted: {timevalue} <br /><br />
+          </h3>
+        </div>
+      ) : (
+        <div>
+          {/* Display something else when the proposal is not active */}
+        </div>
+      )}
         {true ? (
+
 
 
 
           
 
           <h3 className="text-white text-3xl text-center my-2">
-
-            blocks left until reached: {durationvalues} <br></br>
-
-            Votes casted: {timevalue} <br></br><br></br>
-            
 
             Current Value: {boxvalues} <br></br>            Connect your Wallet and propose a new Value!
 
