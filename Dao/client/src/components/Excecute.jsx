@@ -61,10 +61,10 @@ const Excecute = () => {
         )}
 
 
-      <h2 className="text-white text-base text-center mx-2"> Queue & Execute </h2>
 
-      <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
-
+      <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center" style={{ backgroundColor: 'brown', borderWidth: '4px', borderColor: 'black',borderRadius: '10px' }} >
+      <h2 className="text-black text-3xl sm:text-3xl font-bold text-base text-center mx-2 m-6"> Queue & Execute </h2>
+          
 
 
 
@@ -75,9 +75,9 @@ const Excecute = () => {
             <button
               type="button"
               onClick={handleSubmit}
-              className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
-            >
-              Send now
+              className="text-black text-2xl sm:text-2xl w-full mt-2 border-[3px] p-2 border-solid border-black hover:bg-black hover:text-white rounded-md cursor-pointer"
+              >
+              Execute
             </button>
           )}
 

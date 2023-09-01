@@ -9,9 +9,11 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
     step="0.0001"
     value={value}
     onChange={(e) => handleChange(e, name)}
-    className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
+    className="mt-2 p-2 border border-black rounded-md w-full min-w-[300px]" 
   />
 );
+
+const inputClass = "mt-2 p-2 border border-black rounded-md w-full min-w-[300px]";
 
 const Propose = () => {
 
@@ -23,6 +25,7 @@ const Propose = () => {
     const { values, calldatas, description } = formData;
 
     e.preventDefault();
+
 
     if (!values || !calldatas || !description) return;
 
@@ -65,10 +68,32 @@ const Propose = () => {
 
       {/* <h2 className="text-white text-base text-center mx-2"> Proposal</h2> */}
 
-      <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
-        <Input placeholder="Enter a number" name="values" type="number" handleChange={handleChange} />
-        <Input placeholder="Enter calldatas, should be 'store'" name="calldatas" type="text" handleChange={handleChange} />
-        <Input placeholder="Enter description" name="description" type="text" handleChange={handleChange} />
+
+
+      <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center" style={{ backgroundColor: 'brown', borderWidth: '4px', borderColor: 'black',borderRadius: '10px' }} >
+      <Input
+  placeholder="Enter a number"
+  name="values"
+  type="number"
+  handleChange={handleChange}
+  className={inputClass} // Apply the common styling class
+/>
+
+<Input
+  placeholder="Enter calldatas, should be 'store'"
+  name="calldatas"
+  type="text"
+  handleChange={handleChange}
+  className={inputClass} // Apply the common styling class
+/>
+
+<Input
+  placeholder="Enter description"
+  name="description"
+  type="text"
+  handleChange={handleChange}
+  className={inputClass} // Apply the common styling class
+/>
 
         <div className="h-[1px] w-full bg-gray-400 my-2" />
 
@@ -78,9 +103,9 @@ const Propose = () => {
             <button
               type="button"
               onClick={handleSubmit}
-              className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
-            >
-              Send now
+              className="text-black text-2xl sm:text-2xl w-full mt-2 border-[3px] p-2 border-solid border-black hover:bg-black hover:text-white rounded-md cursor-pointer"
+              >
+              Propose
             </button>
           )}
 

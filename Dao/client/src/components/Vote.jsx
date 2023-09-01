@@ -13,7 +13,7 @@ const Input = ({ placeholder, name, type, value, handleChangeVote }) => (
       step="0.0001"
       value={value}
       onChange={(e) => handleChangeVote(e, name)}
-      className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
+      className="mt-2 p-2 border border-black rounded-md w-full min-w-[300px]" 
     />
   );
 
@@ -58,7 +58,7 @@ const Vote = () => {
          
           {/* <h2 className="text-white text-base text-center mx-2"> Vote: </h2> */}
               
-              <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
+                <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center" style={{ backgroundColor: 'brown', borderWidth: '4px', borderColor: 'black',borderRadius: '10px' }} >
                 <Input placeholder="0 = Against, 1 = For, 2 = Abstain" name="values" type="number" handleChangeVote={handleChangeVote} />
                 <Input placeholder="reason" name="reason" type="text" handleChangeVote={handleChangeVote} />
 
@@ -72,9 +72,9 @@ const Vote = () => {
                     <button
                       type="button"
                       onClick={handleSubmit}
-                      className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
-                    >
-                      Send now
+                      className="text-black text-2xl sm:text-2xl w-full mt-2 border-[3px] p-2 border-solid border-black hover:bg-black hover:text-white rounded-md cursor-pointer"
+                      >
+                      Vote
                     </button>
                   )}
            
