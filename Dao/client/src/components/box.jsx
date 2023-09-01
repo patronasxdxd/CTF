@@ -42,7 +42,7 @@ const TransactionsCard = ({ timestamp, message, amount }) => {
 
 const Box = () => {
   const { transactions, currentAccount } = useContext(TransactionContext);
-  const { boxvalues, structArray } = useContext(BoxContext);
+  const { boxvalues, structArray,timevalue } = useContext(BoxContext);
 
 
   return (
@@ -52,7 +52,16 @@ const Box = () => {
     <div className="flex w-full justify-center items-center 2xl:px-20 gradient-bg-transactions">
       <div className="flex flex-col md:p-12 py-12 px-4">
         {true ? (
+
+
+
+          
+
           <h3 className="text-white text-3xl text-center my-2">
+
+            Votes casted: {timevalue} <br></br><br></br>
+            
+
             Current Value: {boxvalues} <br></br>            Connect your Wallet and propose a new Value!
 
           </h3>

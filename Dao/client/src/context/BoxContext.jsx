@@ -45,9 +45,11 @@ export const BoxContentProvider = ({ children }) => {
   const [structArray, setStructArray] = useState([]);
   const [isLoadingExecute, setIsLoadingExecute] = useState(false);
   const [isLoadingVote, setIsLoadingVote] = useState(false);
+  const [isLoadingFaucet, setisLoadingFaucet] = useState(false);
   const [currentAccount, setCurrentAccount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [boxvalues, setboxValues] = useState([]);
+  const [timevalue, settimevalues] = useState([]);
   const [proposalId, setProposalId] = useState([]);
   const [currentProposal, setCurrentProposal] = useState([]);
   const [voteTime, setvoteTime] = useState("");
@@ -95,6 +97,28 @@ export const BoxContentProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+
+  const getVotes = async () => {
+
+
+    try {
+
+      if ( ethereum)
+    {
+
+      const governor = createGovernorContract();
+      const boxContract = createEthereumContract();
+
+      const numbers = await governor.getTotalVotesForProposal(boxContract.getProposal())
+
+
+      settimevalues( numbers.toNumber());
+    }      
+    } catch (error) {
+      
+    }
+  }
 
   const getAllTransactions = async () => {
 
@@ -163,6 +187,7 @@ export const BoxContentProvider = ({ children }) => {
           makeCards();
         };
         getAllTransactions();
+        getVotes();
         getProposalId();
         getCurrentProposal();
         //checkSate();
@@ -250,15 +275,26 @@ export const BoxContentProvider = ({ children }) => {
         const { address } = addressData;
 
 
+
+
+    
+
+ 
+
         const tokenContract = createTokenContract();
 
         console.log("minting!")
 
         
-        await tokenContract.mint(address,1)
+        const queueTx = await tokenContract.mint(address,1)
+        setisLoadingFaucet(true);
+
 
         console.log("delegating!")
         await tokenContract.delegate(address)
+
+        await queueTx.wait(1);
+        setisLoadingFaucet(false);
 
 
       }
@@ -326,7 +362,7 @@ export const BoxContentProvider = ({ children }) => {
         const governor = createGovernorContract();
         const boxContract = createEthereumContract();
         const tokenContract = createTokenContract();
-
+  
 
         async function mintTokens() {
           const recipient = "0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f";
@@ -439,7 +475,7 @@ export const BoxContentProvider = ({ children }) => {
         handleChangeVote,
         handleChangeAddress,
         handleChangeExecute,
-        
+        isLoadingFaucet,
         vote,
         voteTime,
         execute,
@@ -450,7 +486,8 @@ export const BoxContentProvider = ({ children }) => {
         isLoading,
         isLoadingVote,
         isLoadingExecute,
-        structArray
+        structArray,timevalue
+      
 
       }}
     >

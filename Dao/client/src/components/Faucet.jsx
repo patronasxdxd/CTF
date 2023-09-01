@@ -15,7 +15,7 @@ const Input = ({ placeholder, name, type, value, handleChangeAddress }) => (
 
 const Faucet = () => {
 
-  const { currentAccount, connectWallet, handleChangeAddress, sendTransaction, formData, isLoading, faucet, vote, voteData, execute, handleChangeExecute,addressData, proposalId, voteTime, isLoadingExecute } = useContext(BoxContext);
+  const { currentAccount, connectWallet, handleChangeAddress, sendTransaction, formData, isLoading, faucet, vote, voteData, execute, handleChangeExecute,addressData, proposalId, voteTime, isLoadingFaucet } = useContext(BoxContext);
 
 
 
@@ -49,7 +49,7 @@ const Faucet = () => {
 
 
 
-        {isLoadingExecute
+        {isLoadingFaucet
           ? <Loader />
           : (
             <button
