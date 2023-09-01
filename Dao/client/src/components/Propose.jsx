@@ -71,6 +71,8 @@ const Propose = () => {
 
 
       <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center" style={{ backgroundColor: 'brown', borderWidth: '4px', borderColor: 'black',borderRadius: '10px' }} >
+      <h2 className="text-black text-3xl sm:text-3xl font-bold text-base text-center mx-2 m-2"> Propose </h2>
+
       <Input
   placeholder="Enter a number"
   name="values"
@@ -96,6 +98,7 @@ const Propose = () => {
 />
 
         <div className="h-[1px] w-full bg-gray-400 my-2" />
+        
 
         {isLoading
           ? <Loader />

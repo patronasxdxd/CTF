@@ -50,7 +50,7 @@ const Box = () => {
 
 
 
-    <div className="flex w-full justify-center items-center 2xl:px-20 gradient-bg-transactions">
+    <div className="flex w-full justify-center items-center 2xl:px-20 my-20 gradient-bg-transactions" style={{ borderWidth: '4px', borderColor: 'black' }}>
       <div className="flex flex-col md:p-12 py-12 px-4">
       {isProposalActive ? (
         <div>
