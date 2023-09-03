@@ -34,7 +34,7 @@ const Welcome = () => {
         <div className="flex flex-1 justify-start items-start flex-col mf:mr-10">
 
         <div style={{ backgroundColor: 'brown', borderWidth: '4px', borderColor: 'black',borderRadius: '10px' }} className="p-4">
-  <h1 className="text-3xl sm:text-5xl text-black font-bold">
+  <h1 className="text-3xl sm:text-5xl text-black">
     Governor Dao <br /> On a EIP-2535: Diamond Multi-Facet Proxy
   </h1>
 </div>

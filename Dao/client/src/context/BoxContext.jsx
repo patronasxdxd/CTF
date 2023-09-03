@@ -382,7 +382,7 @@ export const BoxContentProvider = ({ children }) => {
         console.log("minting!")
 
         
-        const queueTx = await tokenContract.mint(address,1)
+        const queueTx = await tokenContract.mint(address,1);
         setisLoadingFaucet(true);
 
 
