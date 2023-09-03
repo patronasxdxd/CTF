@@ -55,7 +55,7 @@ const Box = () => {
       {isProposalActive ? (
         <div>
           <h3 className="text-white text-3xl text-center my-2">
-            Blocks left until reached: {durationvalues} <br />
+            Blocks left until voting period ended: {durationvalues} <br />
             Votes casted: {timevalue} <br /><br />
           </h3>
         </div>

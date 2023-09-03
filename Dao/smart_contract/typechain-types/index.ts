@@ -37,7 +37,6 @@ export type { IDiamondCut } from "./IDiamondCut";
 export type { IDiamondLoupe } from "./IDiamondLoupe";
 export type { IERC173 } from "./IERC173";
 export type { LibDiamond } from "./LibDiamond";
-export type { Transactions } from "./Transactions";
 export type { DiamondInit } from "./DiamondInit";
 
 export { AccessControl__factory } from "./factories/AccessControl__factory";
@@ -76,5 +75,4 @@ export { IDiamondCut__factory } from "./factories/IDiamondCut__factory";
 export { IDiamondLoupe__factory } from "./factories/IDiamondLoupe__factory";
 export { IERC173__factory } from "./factories/IERC173__factory";
 export { LibDiamond__factory } from "./factories/LibDiamond__factory";
-export { Transactions__factory } from "./factories/Transactions__factory";
 export { DiamondInit__factory } from "./factories/DiamondInit__factory";

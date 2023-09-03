@@ -10,7 +10,7 @@ contract GovernanceToken is ERC20Votes {
         ERC20("GovernanceToken", "GT")
         ERC20Permit("GovernanceToken")
     {
-        _mint(msg.sender, s_maxSupply);
+        _mint(msg.sender, 1000);
     }
 
     // The functions below are overrides required by Solidity.

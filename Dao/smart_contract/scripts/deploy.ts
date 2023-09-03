@@ -78,31 +78,6 @@ export async function deployDiamond() {
     return selectors;
   }
 
-  // function removeSelectors(selectors: any[], signatures: any[]) {
-  //   const iface = new ethers.utils.Interface(
-  //     signatures.map((v: string) => "function " + v)
-  //   );
-  //   const removeSelectors = signatures.map(
-  //     (v: string | FunctionFragment | ErrorFragment) => iface.getSighash(v)
-  //   );
-  //   selectors = selectors.filter((v: any) => !removeSelectors.includes(v));
-  //   return selectors;
-  // }
-
-  // find a particular address position in the return value of diamondLoupeFacet.facets()
-  function findAddressPositionInFacets(
-    facetAddress: any,
-    facets: string | any[]
-  ) {
-    for (let i = 0; i < facets.length; i++) {
-      if (facets[i].facetAddress === facetAddress) {
-        return i;
-      }
-    }
-  }
-
-
-
 
   const accounts = await ethers.getSigners();
   const contractOwner = accounts[0];
@@ -132,9 +107,9 @@ export async function deployDiamond() {
 
 
 
-  console.log("export const DiamondCutFacetAdress = \"",diamondCutFacet.address,"\"");
-  console.log("export const DiamondAddress  = \"",diamond.address,"\"");
-  console.log("export const DiamondInitAddress  = \"",diamondInit.address,"\"");
+  console.log("export const DiamondCutFacetAdress =  \"" +diamondCutFacet.address + "\"");
+  console.log("export const DiamondAddress  = \"" +diamond.address + "\"");
+  console.log("export const DiamondInitAddress  = \"" + diamondInit.address + "\"");
 
 
 
@@ -187,7 +162,7 @@ export async function deployDiamond() {
   await delegatet.delegate(contractOwner.address);
 
 
-  console.log("minting", await delegatet.mint(contractOwner.address, 10000000));
+  console.log("minting", await delegatet.mint(contractOwner.address, 100));
 
 
   
@@ -203,7 +178,6 @@ export async function deployDiamond() {
 
   console.log("----------------------------------------------------")
   console.log("Setting up contracts for roles...")
-  // would be great to use multicall here...
   const proposerRole = await timeLock.PROPOSER_ROLE()
   const executorRole = await timeLock.EXECUTOR_ROLE()
   const adminRole = await timeLock.TIMELOCK_ADMIN_ROLE()
@@ -241,10 +215,6 @@ export async function deployDiamond() {
   await proposerTx.wait(1)
   const executorTx = await timeLock.grantRole(executorRole, ADDRESS_ZERO)
   await executorTx.wait(1)
-
-
-
-
 
 
   console.log("minting", await delegatet.mint(accounts[1].address, 100));
